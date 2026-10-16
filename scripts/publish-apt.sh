@@ -30,8 +30,8 @@ mkdir -p "pool/$SUITE/$COMPONENT/binary-$ARCH" "dists/$SUITE/$COMPONENT/binary-$
 cp -f "$DEBDIR"/*.deb "pool/$SUITE/$COMPONENT/binary-$ARCH/"
 
 dpkg-scanpackages --arch "$ARCH" "pool/$SUITE/$COMPONENT/binary-$ARCH" /dev/null > "dists/$SUITE/$COMPONENT/binary-$ARCH/Packages"
-rm -f "dists/$SUITE/$COMPONENT/binary-$ARCH/Packages.gz"
-gzip -9n "dists/$SUITE/$COMPONENT/binary-$ARCH/Packages"
+# -c: write .gz to stdout (overwrite-safe) while KEEPING the plain Packages
+gzip -9n -c "dists/$SUITE/$COMPONENT/binary-$ARCH/Packages" > "dists/$SUITE/$COMPONENT/binary-$ARCH/Packages.gz"
 
 apt-ftparchive \
   -o "APT::FTPArchive::Release::Origin=droidian-oppo-joan" \
