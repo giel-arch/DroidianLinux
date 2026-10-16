@@ -25,6 +25,12 @@ jobs:
           for pkg in adaptation/adaptation-oppo-joan adaptation/adaptation-oppo-joan-configs; do
             name=$(basename "$pkg")
             echo "=== building $name ==="
+            # releng-build-package needs a git repository inside the build dir
+            # (a bind-mounted subdirectory cannot see the parent .git)
+            git -C "$pkg" init -q 2>/dev/null || true
+            git -C "$pkg" add -A
+            git -C "$pkg" -c user.name="droidian-ci" -c user.email="ci@localhost" \
+              commit -qm "adaptation build $name" 2>/dev/null || true
             docker run --rm \
               -v "$PWD/$pkg:/buildd/sources" \
               -v "$PWD/packages:/buildd" \
