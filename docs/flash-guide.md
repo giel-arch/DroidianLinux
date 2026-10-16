@@ -83,9 +83,14 @@ Flash ulang backup: `boot_a/b`, `vbmeta_a/b` dari folder backup scatter
 
 | Komponen | Status | Catatan |
 |---|---|---|
-| Kernel (4.19.191 + halium fragment) | siap build CI | defconfig dari boot_a (IKCONFIG) |
-| Boot image v2 + initramfs halium | siap build CI | init_boot/vendor_boot tidak dipakai (stock kosong) |
-| Halium GSI 14 (api34) | via `android-system-gsi-34-bin` | sesuai struktur mainline "ossi" Oppo |
-| Display (hwcomposer.mt6768, HWC2/fbdev) | perlu uji | phoc backend hwcomposer, scale 2 |
-| Audio (HIDL 6.0/7.0) | perlu uji | pulseaudio-modules-droid-hidl |
-| Sensors/camera/lights/GNSS/BT | perlu uji | lihat docs/vendor-hal-inventory.md |
+| Kernel (4.19.191 + fragment halium) | ✅ CI GREEN | defconfig dari boot_a (IKCONFIG); boot.img + vbmeta + 6 deb di release `latest-kernel` |
+| Boot image v2 + initramfs halium | ✅ CI GREEN | init_boot/vendor_boot tidak dipakai (stock kosong); dtb ≈ stock (139 KB) |
+| Image GSI Droidian api34 | ✅ CI GREEN | `droidian-UNOFFICIAL-phosh-phone-oppo_joan-api34-arm64-102_*.zip` (1,6 GB) di release `latest-image` |
+| Adaptasi (metapackage + configs) | ✅ CI GREEN | apt repo + release `latest-adaptation` |
+| Display (hwcomposer.mt6768, HWC2/fbdev) | perlu uji on-device | phoc backend hwcomposer, scale 2 |
+| Audio (HIDL 6.0/7.0) | perlu uji on-device | pulseaudio-modules-droid-hidl |
+| Sensors/camera/lights/GNSS/BT | perlu uji on-device | lihat docs/vendor-hal-inventory.md |
+
+> Catatan infrastruktur: mirror snapshot `next` Droidian mati (404 upstream);
+> workflow image memakai snapshot rolling **102** (`releases.droidian.org/snapshots/102`)
+> yang masih hidup dan memuat `android-system-gsi-34` (Halium 14.0 GSI, built 2026-07).
