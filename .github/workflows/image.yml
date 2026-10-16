@@ -70,6 +70,14 @@ jobs:
         run: |
           docker exec $CONTAINER_HASH /bin/sh -c 'cd /buildd/sources; DROIDIAN_VERSION="${{ env.DROIDIAN_VERSION }}" ./generate_device_recipe.py ${{ env.PRODUCT }} ${{ env.ARCH }} ${{ env.EDITION }} ${{ env.VARIANT }} ${{ env.APILEVEL }} ${{ env.DROIDIAN_VARIANT }} && debos --disable-fakemachine generated/droidian.yaml'
 
+      - name: Collect outputs
+        run: |
+          # debos writes into out/ under the sources dir; /tmp/buildd-results
+          # is kept as a fallback location.
+          mkdir -p /tmp/buildd-results
+          find droidian-images-src/out -type f -exec cp -v {} /tmp/buildd-results/ \; 2>/dev/null || true
+          ls -la /tmp/buildd-results/
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -82,8 +90,10 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           TAG="latest-image"
+          shopt -s nullglob
+          FILES=(/tmp/buildd-results/*.zip /tmp/buildd-results/*.img)
           gh release delete "$TAG" --cleanup-tag -y 2>/dev/null || true
-          gh release create "$TAG" /tmp/buildd-results/*.zip \
+          gh release create "$TAG" "${FILES[@]}" \
             -t "Droidian GSI image $(date -u +%Y%m%d%H%M)" \
             --notes "Droidian (Halium 14, api34) for Oppo A38 (joan). Flash userdata.img via fastboot; see docs/flash-guide.md." \
             --prerelease
