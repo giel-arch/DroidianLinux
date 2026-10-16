@@ -35,14 +35,16 @@ jobs:
 
       - name: Checkout droidian-images
         run: |
+          # NOTE: this repo already has a droidian-images/ CONFIG directory,
+          # so the upstream repo is cloned under a different name.
           git clone --recurse-submodules -b droidian \
-            https://github.com/droidian-images/droidian.git droidian-images
-          cd droidian-images
+            https://github.com/droidian-images/droidian.git droidian-images-src
+          cd droidian-images-src
           git submodule update --init --recursive
 
       - name: Register community device (oppo_joan)
         run: |
-          cd droidian-images
+          cd droidian-images-src
           cp "$GITHUB_WORKSPACE/droidian-images/community_devices.yml" .
           mkdir -p pre-overlay/etc/apt/sources.list.d
           printf 'deb [trusted=yes] https://giel-arch.github.io/DroidianKernel current main\n' \
@@ -58,7 +60,7 @@ jobs:
         run: docker pull quay.io/droidian/rootfs-builder:next-arm64
 
       - name: Start container
-        run: echo CONTAINER_HASH=$(docker run --detach --privileged --cgroupns=host -v /tmp/buildd-results:/buildd/out -v /dev:/host-dev -v /sys/fs/cgroup:/sys/fs/cgroup -v ${GITHUB_WORKSPACE}/droidian-images:/buildd/sources --security-opt seccomp:unconfined quay.io/droidian/rootfs-builder:next-arm64 sleep infinity) >> $GITHUB_ENV
+        run: echo CONTAINER_HASH=$(docker run --detach --privileged --cgroupns=host -v /tmp/buildd-results:/buildd/out -v /dev:/host-dev -v /sys/fs/cgroup:/sys/fs/cgroup -v ${GITHUB_WORKSPACE}/droidian-images-src:/buildd/sources --security-opt seccomp:unconfined quay.io/droidian/rootfs-builder:next-arm64 sleep infinity) >> $GITHUB_ENV
 
       - name: Build rootfs image
         run: |
