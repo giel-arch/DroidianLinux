@@ -1,0 +1,19 @@
+Source: adaptation-oppo-joan
+Section: metapackages
+Priority: optional
+Maintainer: giel-arch <hypergiel88@gmail.com>
+Build-Depends: debhelper (>= 10)
+Standards-Version: 4.5.0.3
+Vcs-Browser: https://github.com/giel-arch/DroidianLinux
+Vcs-Git: https://github.com/giel-arch/DroidianLinux.git
+
+Package: adaptation-oppo-joan
+Architecture: arm64
+Depends: ${misc:Depends},
+         adaptation-hybris-api34-phone,
+         adaptation-oppo-joan-configs,
+         linux-bootimage-oppo-joan,
+         droidian-camera
+Description: Oppo A38 (joan) adaptation metapackage
+ Metapackage for the Droidian (Halium 14 / Android 14 base) port of the
+ Oppo A38 CPH2579 (joan, MediaTek MT6768).

@@ -1,0 +1,57 @@
+name: adaptation
+
+on:
+  push:
+    branches: [droidian]
+    paths:
+      - "adaptation/**"
+      - ".github/workflows/adaptation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build adaptation packages
+        run: |
+          mkdir -p packages
+          for pkg in adaptation/adaptation-oppo-joan adaptation/adaptation-oppo-joan-configs; do
+            name=$(basename "$pkg")
+            echo "=== building $name ==="
+            docker run --rm \
+              -v "$PWD/$pkg:/buildd/sources" \
+              -v "$PWD/packages:/buildd" \
+              quay.io/droidian/build-essential:next-amd64 \
+              bash -c 'set -e; cd /buildd/sources; RELENG_HOST_ARCH=arm64 releng-build-package'
+          done
+          ls -la packages
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: adaptation-debs
+          path: packages/*.deb
+          if-no-files-found: error
+
+      - name: Publish to apt repository (gh-pages)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash scripts/publish-apt.sh "$PWD/packages"
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="latest-adaptation"
+          gh release delete "$TAG" --cleanup-tag -y 2>/dev/null || true
+          gh release create "$TAG" packages/*.deb \
+            -t "Droidian adaptation build $(date -u +%Y%m%d%H%M)" \
+            --notes "adaptation-oppo-joan + configs for Oppo A38 (joan), Halium 14 / api34." \
+            --prerelease

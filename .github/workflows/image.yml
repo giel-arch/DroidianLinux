@@ -1,0 +1,83 @@
+name: droidian-image
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  PRODUCT: oppo_joan
+  ARCH: arm64
+  EDITION: phosh
+  VARIANT: phone
+  APILEVEL: "34"
+  DROIDIAN_VARIANT: droidian
+
+jobs:
+  image:
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 120
+    steps:
+      - name: Free disk space
+        uses: jlumbroso/free-disk-space@main
+        with:
+          tool-cache: true
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
+          docker-images: true
+          swap-storage: true
+
+      - name: Checkout this repository
+        uses: actions/checkout@v4
+
+      - name: Checkout droidian-images
+        run: |
+          git clone --recurse-submodules -b droidian \
+            https://github.com/droidian-images/droidian.git droidian-images
+          cd droidian-images
+          git submodule update --init --recursive
+
+      - name: Register community device (oppo_joan)
+        run: |
+          cd droidian-images
+          cp "$GITHUB_WORKSPACE/droidian-images/community_devices.yml" .
+          mkdir -p pre-overlay/etc/apt/sources.list.d
+          printf 'deb [trusted=yes] https://giel-arch.github.io/DroidianKernel current main\n' \
+            > pre-overlay/etc/apt/sources.list.d/00-oppo-joan.list
+          printf 'deb [trusted=yes] https://giel-arch.github.io/DroidianLinux current main\n' \
+            >> pre-overlay/etc/apt/sources.list.d/00-oppo-joan.list
+          cat pre-overlay/etc/apt/sources.list.d/00-oppo-joan.list
+
+      - name: Create build dir
+        run: mkdir -p /tmp/buildd-results
+
+      - name: Pull container
+        run: docker pull quay.io/droidian/rootfs-builder:next-arm64
+
+      - name: Start container
+        run: echo CONTAINER_HASH=$(docker run --detach --privileged --cgroupns=host -v /tmp/buildd-results:/buildd/out -v /dev:/host-dev -v /sys/fs/cgroup:/sys/fs/cgroup -v ${GITHUB_WORKSPACE}/droidian-images:/buildd/sources --security-opt seccomp:unconfined quay.io/droidian/rootfs-builder:next-arm64 sleep infinity) >> $GITHUB_ENV
+
+      - name: Build rootfs image
+        run: |
+          docker exec $CONTAINER_HASH /bin/sh -c 'cd /buildd/sources; DROIDIAN_VERSION="next" ./generate_device_recipe.py ${{ env.PRODUCT }} ${{ env.ARCH }} ${{ env.EDITION }} ${{ env.VARIANT }} ${{ env.APILEVEL }} ${{ env.DROIDIAN_VARIANT }} && debos --disable-fakemachine generated/droidian.yaml'
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: droidian-oppo-joan
+          path: /tmp/buildd-results/*
+          if-no-files-found: error
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="latest-image"
+          gh release delete "$TAG" --cleanup-tag -y 2>/dev/null || true
+          gh release create "$TAG" /tmp/buildd-results/*.zip \
+            -t "Droidian GSI image $(date -u +%Y%m%d%H%M)" \
+            --notes "Droidian (Halium 14, api34) for Oppo A38 (joan). Flash userdata.img via fastboot; see docs/flash-guide.md." \
+            --prerelease

@@ -1,0 +1,16 @@
+# Oppo A38 (CPH2579, joan) - MediaTek MT6768
+# graphics / fbdev
+SUBSYSTEM=="graphics", GROUP="video", MODE="0666"
+SUBSYSTEM=="drm", GROUP="video", MODE="0666"
+# input devices (touch via ILITEK built-in driver)
+SUBSYSTEM=="input", GROUP="input", MODE="0660"
+# ION allocator + MTK sync fences (gralloc / hwcomposer through libhybris)
+KERNEL=="ion", MODE="0666"
+KERNEL=="mtksync", MODE="0666"
+KERNEL=="sync", MODE="0666"
+# memtrack (composer backdoor)
+KERNEL=="memtrack", MODE="0666"
+# MTK WMT combo chip (BT/GPS/FM over ttyMT*)
+KERNEL=="ttyMT*", MODE="0660", GROUP="dialout"
+# misc hardware nodes
+KERNEL=="hw_random", MODE="0440", GROUP="hardware"

@@ -1,0 +1,8 @@
+adaptation-oppo-joan-configs (0.1.droidian) trixie; urgency=medium
+
+  * Initial Oppo A38 (joan) adaptation configs.
+  * udev rules for ion/mtksync/fbdev/input (MTK MT6768).
+  * HYBRIS_LD_LIBRARY_PATH prepend: vendor is a self-contained Android 12
+    (VNDK 31) MTK BSP - helper libs live in /vendor/lib64.
+
+ -- giel-arch <hypergiel88@gmail.com>  Fri, 16 Oct 2026 09:10:00 +0700
