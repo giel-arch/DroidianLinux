@@ -1,3 +1,40 @@
+Package: adaptation-oppo-cph2579
+Version: 0.1.droidian+git20261016123126.cbfc73c.master
+Architecture: arm64
+Maintainer: Zhantwo <hypergiel88@gmail.com>
+Installed-Size: 8
+Depends: adaptation-hybris-api34-phone, adaptation-oppo-cph2579-configs, linux-bootimage-oppo-cph2579, droidian-camera
+Filename: pool/current/main/binary-arm64/adaptation-oppo-cph2579_0.1.droidian+git20261016123126.cbfc73c.master_arm64.deb
+Size: 1852
+MD5sum: 72bbac9a962562f9123a10799309a53a
+SHA1: 579c13aaa0d63d58f9892672a1d2149999fc4456
+SHA256: 95914bbf1842b049884b1b30bc8ec32c6f4201a95fa263bc0660a36f12bd65f6
+Section: metapackages
+Priority: optional
+Description: Oppo A38 (cph2579) adaptation metapackage
+ Metapackage for the Droidian (Halium 14 / Android 14 base) port of the
+ Oppo A38 CPH2579 (cph2579, MediaTek MT6768).
+X-Droidian-Vcs-Revision: cbfc73c4c794909b508f17a2989a70a15fba4ac8
+X-Droidian-Vcs-Url: https://github.com/giel-arch/DroidianLinux.git
+
+Package: adaptation-oppo-cph2579-configs
+Version: 0.1.droidian+git20261016123213.559bfed.master
+Architecture: arm64
+Maintainer: Zhantwo <hypergiel88@gmail.com>
+Installed-Size: 21
+Filename: pool/current/main/binary-arm64/adaptation-oppo-cph2579-configs_0.1.droidian+git20261016123213.559bfed.master_arm64.deb
+Size: 2776
+MD5sum: 60320454843b8e9824adcede9571120f
+SHA1: 46828cfcc536eb70911ab5f7fd1cce2702f719cf
+SHA256: a9faeda499bc05b7b4a5af37fc7e771956c18c07991172c3a7a22d172c9fbe84
+Section: misc
+Priority: optional
+Description: Oppo A38 (cph2579) adaptation configs
+ Device configuration files (udev rules, compositor settings, hybris
+ environment) for the Oppo A38 CPH2579 Droidian port.
+X-Droidian-Vcs-Revision: 559bfed7cae4835107070e041b45a0c8cb9e4045
+X-Droidian-Vcs-Url: https://github.com/giel-arch/DroidianLinux.git
+
 Package: adaptation-oppo-joan
 Version: 0.1.droidian+git20261016030536.af09f95.master
 Architecture: arm64
