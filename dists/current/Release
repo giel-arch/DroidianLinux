@@ -1,0 +1,24 @@
+Architectures: arm64
+Codename: current
+Components: main
+Date: Fri, 16 Oct 2026 03:06:45 +0000
+Description: Droidian port packages for Oppo A38 (joan)
+Label: droidian-oppo-joan
+Origin: droidian-oppo-joan
+Suite: current
+MD5Sum:
+ 16ffd304b5103980df5d7d24a2585fa4              218 Release
+ 05437658d62713d5a156be932988f178             1728 main/binary-arm64/Packages
+ a5eee8c49f06c2923eb5ace4dbfdb171              801 main/binary-arm64/Packages.gz
+SHA1:
+ 9ed70f09514797775c4e2e64e0f1b85fa8b5dfd2              218 Release
+ a277912e01b58e48a7cdc04148253346b1516b80             1728 main/binary-arm64/Packages
+ 34b14b1fd7eca65305766b787e594480acf38826              801 main/binary-arm64/Packages.gz
+SHA256:
+ 9fe85b1040a2c5d29ff553bb8becd17629b5c09e360d7a3f1504d58307df4b33              218 Release
+ 95da186e478775f1e9145248258bf37d5b08528ea390ecfa3ea2c7c6612bf856             1728 main/binary-arm64/Packages
+ 1783a0a33cbe7d6d10ce1170ec10bebbc106e59548ab38ba99d742b960783abb              801 main/binary-arm64/Packages.gz
+SHA512:
+ a02b16feb2dd0da1d00ea258dd02b4c68b20a47b58cc793cb28149db07daf1d692dc4a3a4e47339617df0199adfb58f265f845305402de27ef7619808a99bd46              218 Release
+ 6d230049d44766403504f2d449557672ea05103aec9b9dfa35c96068650cf0a58492b165e6dcdb5289edc383847ccd743c431732218b37f16f06db78ed549345             1728 main/binary-arm64/Packages
+ e3b0802416669a33ed9f68b8dca925095e6539391358c7e793618589a9b944cbaaf55b978ca4d3c166d5a076c40ae114ba1dd9dfb3413e177030815182fbd360              801 main/binary-arm64/Packages.gz

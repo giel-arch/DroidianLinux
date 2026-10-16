@@ -1,0 +1,37 @@
+Package: adaptation-oppo-joan
+Version: 0.1.droidian+git20261016030536.af09f95.master
+Architecture: arm64
+Maintainer: giel-arch <hypergiel88@gmail.com>
+Installed-Size: 8
+Depends: adaptation-hybris-api34-phone, adaptation-oppo-joan-configs, linux-bootimage-oppo-joan, droidian-camera
+Filename: pool/current/main/binary-arm64/adaptation-oppo-joan_0.1.droidian+git20261016030536.af09f95.master_arm64.deb
+Size: 1836
+MD5sum: ea7a3ae78ecae07a0f1f1b5abb968ec2
+SHA1: dce356bc72da831ac4fac57b724b36a7de08d459
+SHA256: b3b678acb3119915cced06fc07419ed26b30890745bedabfca6cf6fc52a0ebf8
+Section: metapackages
+Priority: optional
+Description: Oppo A38 (joan) adaptation metapackage
+ Metapackage for the Droidian (Halium 14 / Android 14 base) port of the
+ Oppo A38 CPH2579 (joan, MediaTek MT6768).
+X-Droidian-Vcs-Revision: af09f9555c155eff302b09dcaad9d6e38610d129
+X-Droidian-Vcs-Url: https://github.com/giel-arch/DroidianLinux.git
+
+Package: adaptation-oppo-joan-configs
+Version: 0.1.droidian+git20261016030629.2abb251.master
+Architecture: arm64
+Maintainer: giel-arch <hypergiel88@gmail.com>
+Installed-Size: 21
+Filename: pool/current/main/binary-arm64/adaptation-oppo-joan-configs_0.1.droidian+git20261016030629.2abb251.master_arm64.deb
+Size: 2756
+MD5sum: 8265f74dbadc92f667d19f28c32e676e
+SHA1: 7d73f1f5d17a0d7d0cf4ff9483725d2763445082
+SHA256: 2543c49cfe554e7b590b786b3d00181278411a66e439d3472eb01542831da156
+Section: misc
+Priority: optional
+Description: Oppo A38 (joan) adaptation configs
+ Device configuration files (udev rules, compositor settings, hybris
+ environment) for the Oppo A38 CPH2579 Droidian port.
+X-Droidian-Vcs-Revision: 2abb251722ff36763dddc9af1e10721c9448d2c0
+X-Droidian-Vcs-Url: https://github.com/giel-arch/DroidianLinux.git
+
