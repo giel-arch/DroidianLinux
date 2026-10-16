@@ -1,4 +1,4 @@
-# Analisis struktur firmware Oppo A38 (CPH2579, `joan`)
+# Analisis struktur firmware Oppo A38 (CPH2579, `cph2579`)
 
 > Sumber: backup scatter SP Flash Tool 2025-05-18 (read-only) — boot_a.img,
 > init_boot_a.img, vendor_boot_a.img, dtbo_a.img, super.img + MT6768_Android_scatter.txt.

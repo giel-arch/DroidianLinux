@@ -1,13 +1,13 @@
-Source: adaptation-oppo-joan-configs
+Source: adaptation-oppo-cph2579-configs
 Section: misc
 Priority: optional
-Maintainer: giel-arch <hypergiel88@gmail.com>
+Maintainer: Zhantwo <hypergiel88@gmail.com>
 Build-Depends: debhelper-compat (= 13)
 Standards-Version: 4.5.0.3
 
-Package: adaptation-oppo-joan-configs
+Package: adaptation-oppo-cph2579-configs
 Architecture: arm64
 Depends: ${misc:Depends}
-Description: Oppo A38 (joan) adaptation configs
+Description: Oppo A38 (cph2579) adaptation configs
  Device configuration files (udev rules, compositor settings, hybris
  environment) for the Oppo A38 CPH2579 Droidian port.

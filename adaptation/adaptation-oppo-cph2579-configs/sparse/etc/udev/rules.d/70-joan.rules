@@ -1,4 +1,4 @@
-# Oppo A38 (CPH2579, joan) - MediaTek MT6768
+# Oppo A38 (CPH2579, cph2579) - MediaTek MT6768
 # graphics / fbdev
 SUBSYSTEM=="graphics", GROUP="video", MODE="0666"
 SUBSYSTEM=="drm", GROUP="video", MODE="0666"

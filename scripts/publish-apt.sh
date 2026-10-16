@@ -34,13 +34,13 @@ dpkg-scanpackages --arch "$ARCH" "pool/$SUITE/$COMPONENT/binary-$ARCH" /dev/null
 gzip -9n -c "dists/$SUITE/$COMPONENT/binary-$ARCH/Packages" > "dists/$SUITE/$COMPONENT/binary-$ARCH/Packages.gz"
 
 apt-ftparchive \
-  -o "APT::FTPArchive::Release::Origin=droidian-oppo-joan" \
-  -o "APT::FTPArchive::Release::Label=droidian-oppo-joan" \
+  -o "APT::FTPArchive::Release::Origin=droidian-oppo-cph2579" \
+  -o "APT::FTPArchive::Release::Label=droidian-oppo-cph2579" \
   -o "APT::FTPArchive::Release::Suite=$SUITE" \
   -o "APT::FTPArchive::Release::Codename=$SUITE" \
   -o "APT::FTPArchive::Release::Architectures=$ARCH" \
   -o "APT::FTPArchive::Release::Components=$COMPONENT" \
-  -o "APT::FTPArchive::Release::Description=Droidian port packages for Oppo A38 (joan)" \
+  -o "APT::FTPArchive::Release::Description=Droidian port packages for Oppo A38 (cph2579)" \
   release "dists/$SUITE" > "dists/$SUITE/Release"
 
 git config user.name "droidian-ci"

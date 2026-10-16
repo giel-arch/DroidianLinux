@@ -7,7 +7,7 @@ permissions:
   contents: write
 
 env:
-  PRODUCT: oppo_joan
+  PRODUCT: oppo_cph2579
   ARCH: arm64
   EDITION: phosh
   VARIANT: phone
@@ -46,16 +46,16 @@ jobs:
           cd droidian-images-src
           git submodule update --init --recursive
 
-      - name: Register community device (oppo_joan)
+      - name: Register community device (oppo_cph2579)
         run: |
           cd droidian-images-src
           cp "$GITHUB_WORKSPACE/droidian-images/community_devices.yml" .
           mkdir -p pre-overlay/etc/apt/sources.list.d
           printf 'deb [trusted=yes] https://giel-arch.github.io/DroidianKernel current main\n' \
-            > pre-overlay/etc/apt/sources.list.d/00-oppo-joan.list
+            > pre-overlay/etc/apt/sources.list.d/00-oppo-cph2579.list
           printf 'deb [trusted=yes] https://giel-arch.github.io/DroidianLinux current main\n' \
-            >> pre-overlay/etc/apt/sources.list.d/00-oppo-joan.list
-          cat pre-overlay/etc/apt/sources.list.d/00-oppo-joan.list
+            >> pre-overlay/etc/apt/sources.list.d/00-oppo-cph2579.list
+          cat pre-overlay/etc/apt/sources.list.d/00-oppo-cph2579.list
 
       - name: Create build dir
         run: mkdir -p /tmp/buildd-results
@@ -81,7 +81,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: droidian-oppo-joan
+          name: droidian-oppo-cph2579
           path: /tmp/buildd-results/*
           if-no-files-found: error
 
@@ -95,5 +95,5 @@ jobs:
           gh release delete "$TAG" --cleanup-tag -y 2>/dev/null || true
           gh release create "$TAG" "${FILES[@]}" \
             -t "Droidian GSI image $(date -u +%Y%m%d%H%M)" \
-            --notes "Droidian (Halium 14, api34) for Oppo A38 (joan). Flash userdata.img via fastboot; see docs/flash-guide.md." \
+            --notes "Droidian (Halium 14, api34) for Oppo A38 (cph2579). Flash userdata.img via fastboot; see docs/flash-guide.md." \
             --prerelease

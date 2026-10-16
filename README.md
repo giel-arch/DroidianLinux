@@ -1,7 +1,10 @@
-# DroidianLinux — Oppo A38 (CPH2579, `joan`)
+# DroidianLinux — Oppo A38 (CPH2579, `cph2579`)
 
 Port **Droidian GSI (Halium 14 / base Android 14)** untuk **Oppo A38 CPH2579**
-(codename `joan`, MediaTek MT6768, kernel 4.19.191, A/B slot, dynamic partitions).
+
+> Porting oleh **Zhantwo**. Firmware ini tidak punya codename internal —
+> identitasnya generik `ossi` (lihat docs), device dikenali via model CPH2579.
+(codename `cph2579`, MediaTek MT6768, kernel 4.19.191, A/B slot, dynamic partitions).
 
 Repo ini berisi **paket adaptasi**, **build image GSI**, dan **dokumentasi port**.
 Kompilasi kernel dipisah di repo kembar:
@@ -9,7 +12,7 @@ Kompilasi kernel dipisah di repo kembar:
 | Repo | Isi |
 |---|---|
 | **[giel-arch/DroidianKernel](https://github.com/giel-arch/DroidianKernel)** | packaging kernel (defconfig hasil ekstraksi boot_a, fragment Halium, parameter boot.img) + CI build `boot.img`/`vbmeta.img` |
-| **giel-arch/DroidianLinux** (repo ini) | `adaptation-oppo-joan` (+configs), CI build image GSI api34, docs analisis firmware & HAL |
+| **giel-arch/DroidianLinux** (repo ini) | `adaptation-oppo-cph2579` (+configs), CI build image GSI api34, docs analisis firmware & HAL |
 
 ## Cara kerja (arsitektur port)
 
@@ -41,7 +44,7 @@ Kompilasi kernel dipisah di repo kembar:
 
 | Workflow | Trigger | Hasil |
 |---|---|---|
-| `adaptation` | push ke `adaptation/**` | `adaptation-oppo-joan*.deb` → release `latest-adaptation` + apt repo (gh-pages) |
+| `adaptation` | push ke `adaptation/**` | `adaptation-oppo-cph2579*.deb` → release `latest-adaptation` + apt repo (gh-pages) |
 | `droidian-image` | manual (`workflow_dispatch`) | zip image GSI Droidian api34 → release `latest-image` |
 
 Apt repo (unsigned, `trusted=yes`):

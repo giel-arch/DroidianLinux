@@ -1,16 +1,16 @@
-# Oppo A38 (CPH2579, joan) - community device for droidian-images/droidian
-.oppo_joan_packages:
-  packages: &oppo_joan_packages
-    - adaptation-oppo-joan
-    - adaptation-oppo-joan-configs
-    - linux-image-4.19.191-oppo-joan
-    - linux-bootimage-4.19.191-oppo-joan
-    - linux-bootimage-oppo-joan
+# Oppo A38 (CPH2579, cph2579) - community device for droidian-images/droidian
+.oppo_cph2579_packages:
+  packages: &oppo_cph2579_packages
+    - adaptation-oppo-cph2579
+    - adaptation-oppo-cph2579-configs
+    - linux-image-4.19.191-oppo-cph2579
+    - linux-bootimage-4.19.191-oppo-cph2579
+    - linux-bootimage-oppo-cph2579
 
-oppo_joan:
+oppo_cph2579:
   type: image
   arch: arm64
   edition: phosh
   variant: phone
   apilevel: 34
-  packages: *oppo_joan_packages
+  packages: *oppo_cph2579_packages

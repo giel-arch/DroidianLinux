@@ -22,7 +22,7 @@ jobs:
       - name: Build adaptation packages
         run: |
           mkdir -p packages
-          for pkg in adaptation/adaptation-oppo-joan adaptation/adaptation-oppo-joan-configs; do
+          for pkg in adaptation/adaptation-oppo-cph2579 adaptation/adaptation-oppo-cph2579-configs; do
             name=$(basename "$pkg")
             echo "=== building $name ==="
             # releng-build-package needs a git repository inside the build dir
@@ -61,5 +61,5 @@ jobs:
           gh release delete "$TAG" --cleanup-tag -y 2>/dev/null || true
           gh release create "$TAG" packages/*.deb \
             -t "Droidian adaptation build $(date -u +%Y%m%d%H%M)" \
-            --notes "adaptation-oppo-joan + configs for Oppo A38 (joan), Halium 14 / api34." \
+            --notes "adaptation-oppo-cph2579 + configs for Oppo A38 (cph2579), Halium 14 / api34." \
             --prerelease

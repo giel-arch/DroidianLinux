@@ -1,4 +1,4 @@
-# Inventaris HAL Android (vendor_a) untuk libhybris — Oppo A38 `joan`
+# Inventaris HAL Android (vendor_a) untuk libhybris — Oppo A38 `cph2579`
 
 > Sumber: `vendor_a` (376,3 MB, **erofs**, lz4) diekstrak dari `super.img`
 > (metadata liblp v10.2; `target_data` extent dalam sektor 512B) lalu di-unpack
@@ -50,14 +50,14 @@
    `HYBRIS_LD_LIBRARY_PATH=/system/lib64:/apex/com.android.vndk.v34/lib64:/vendor/lib64/hw`.
    Karena vendor MTK v31 ini **self-contained** (tidak memakai VNDK APEX snapshot —
    helper `libion_mtk`, `libgralloc_extra`, dst. ada langsung di `lib64/` vendor),
-   paket `adaptation-oppo-joan-configs` menambah
-   `etc/profile.d/zz-joan-hybris-ld.sh` yang mem-prepend `/vendor/lib64:/vendor/lib`.
+   paket `adaptation-oppo-cph2579-configs` menambah
+   `etc/profile.d/zz-cph2579-hybris-ld.sh` yang mem-prepend `/vendor/lib64:/vendor/lib`.
 3. **Modul kernel**: touchscreen ILITEK/HXCHIPSET **built-in** (=y) — tidak perlu
    vendor ramdisk modul. Modul `.ko` milik vendor (`bt_drv_connac1x.ko`,
    `gps_drv.ko`, `connfem.ko`, `fpsgo.ko`, `fmradio_drv_mt6631.ko`, `met.ko`)
    ada di `vendor/lib/modules` dan dimuat dari sisi Android container.
 4. **Node device** yang perlu permission udev: `/dev/ion`, `/dev/mtksync`,
-   `/dev/sync`, `/dev/memtrack`, `fb0` — sudah dicover `70-joan.rules`.
+   `/dev/sync`, `/dev/memtrack`, `fb0` — sudah dicover `70-cph2579.rules`.
 
 ## Metode ekstraksi (reproduksi)
 

@@ -1,4 +1,4 @@
-# Panduan flash Droidian ke Oppo A38 (CPH2579, `joan`)
+# Panduan flash Droidian ke Oppo A38 (CPH2579, `cph2579`)
 
 > **Penting**: semua data di `userdata` hilang. Backup dulu. Pastikan vendor
 > stock (super) masih Android 14 Oppo (`oplus/ossi:14`) — port ini butuh
@@ -12,7 +12,7 @@
 3. PC dengan `fastboot` + `adb`.
 4. File hasil CI:
    * `boot.img` + `vbmeta.img` — dari [DroidianKernel release `latest-kernel`](https://github.com/giel-arch/DroidianKernel/releases)
-   * `droidian-oppo-joan-*.zip` — dari [DroidianLinux release `latest-image`](https://github.com/giel-arch/DroidianLinux/releases)
+   * `droidian-oppo-cph2579-*.zip` — dari [DroidianLinux release `latest-image`](https://github.com/giel-arch/DroidianLinux/releases)
      (berisi `data/userdata.img`, `flash_all.sh`, dst.)
 
 ## Langkah flash
@@ -85,7 +85,7 @@ Flash ulang backup: `boot_a/b`, `vbmeta_a/b` dari folder backup scatter
 |---|---|---|
 | Kernel (4.19.191 + fragment halium) | ✅ CI GREEN | defconfig dari boot_a (IKCONFIG); boot.img + vbmeta + 6 deb di release `latest-kernel` |
 | Boot image v2 + initramfs halium | ✅ CI GREEN | init_boot/vendor_boot tidak dipakai (stock kosong); dtb ≈ stock (139 KB) |
-| Image GSI Droidian api34 | ✅ CI GREEN | `droidian-UNOFFICIAL-phosh-phone-oppo_joan-api34-arm64-102_*.zip` (1,6 GB) di release `latest-image` |
+| Image GSI Droidian api34 | ✅ CI GREEN | `droidian-UNOFFICIAL-phosh-phone-oppo_cph2579-api34-arm64-102_*.zip` (1,6 GB) di release `latest-image` |
 | Adaptasi (metapackage + configs) | ✅ CI GREEN | apt repo + release `latest-adaptation` |
 | Display (hwcomposer.mt6768, HWC2/fbdev) | perlu uji on-device | phoc backend hwcomposer, scale 2 |
 | Audio (HIDL 6.0/7.0) | perlu uji on-device | pulseaudio-modules-droid-hidl |
