@@ -12,7 +12,11 @@ env:
   EDITION: phosh
   VARIANT: phone
   APILEVEL: "34"
-  DROIDIAN_VARIANT: droidian
+  # Upstream 'next' snapshot mirror is dead (404); snapshot 102 is the live
+  # rolling snapshot used by the build containers (verified 2026-10). Empty
+  # variant => the apt 'droidian+' scheme resolves snapshots/102 directly.
+  DROIDIAN_VERSION: "102"
+  DROIDIAN_VARIANT: ""
 
 jobs:
   image:
@@ -64,7 +68,7 @@ jobs:
 
       - name: Build rootfs image
         run: |
-          docker exec $CONTAINER_HASH /bin/sh -c 'cd /buildd/sources; DROIDIAN_VERSION="next" ./generate_device_recipe.py ${{ env.PRODUCT }} ${{ env.ARCH }} ${{ env.EDITION }} ${{ env.VARIANT }} ${{ env.APILEVEL }} ${{ env.DROIDIAN_VARIANT }} && debos --disable-fakemachine generated/droidian.yaml'
+          docker exec $CONTAINER_HASH /bin/sh -c 'cd /buildd/sources; DROIDIAN_VERSION="${{ env.DROIDIAN_VERSION }}" ./generate_device_recipe.py ${{ env.PRODUCT }} ${{ env.ARCH }} ${{ env.EDITION }} ${{ env.VARIANT }} ${{ env.APILEVEL }} ${{ env.DROIDIAN_VARIANT }} && debos --disable-fakemachine generated/droidian.yaml'
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
