@@ -1,0 +1,3 @@
+/dev/null etc/systemd/system/plymouth.service
+/dev/null etc/systemd/system/plymouth-start.service
+/dev/null etc/systemd/system/plymouth-read-write.service
